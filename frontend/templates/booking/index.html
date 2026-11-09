@@ -1,0 +1,113 @@
+{% load static %}<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Clinic — Book an appointment</title>
+  <link rel="stylesheet" href="{% static 'booking/style.css' %}">
+</head>
+<body data-api-base="">
+<header class="topbar">
+  <div class="brand"><span class="dot" aria-hidden="true"></span>Ridgeline Clinic</div>
+  <div class="row">
+    <a class="api-link" href="/api">API explorer</a>
+    <button id="key-btn" class="btn dark-ghost" type="button">API key</button>
+  </div>
+</header>
+
+<div id="banner" class="banner" hidden aria-live="polite"></div>
+
+<main>
+  <section class="panel" aria-labelledby="slots-title">
+    <div class="panel-head">
+      <h2 id="slots-title">Available slots</h2>
+      <div class="row">
+        <input id="provider-filter" class="input" type="text" placeholder="Filter by provider" aria-label="Filter by provider">
+        <button id="refresh-slots" class="btn ghost" type="button">Refresh</button>
+      </div>
+    </div>
+    <div id="slot-grid" class="slot-grid" aria-busy="true">
+      <p class="muted loading-note">Loading slots…</p>
+    </div>
+  </section>
+
+  <section class="panel" aria-labelledby="mine-title">
+    <div class="panel-head">
+      <h2 id="mine-title">Your bookings</h2>
+    </div>
+    <form id="lookup-form" class="row" novalidate>
+      <input id="lookup-email" class="input" type="email" placeholder="you@example.com" aria-label="Email address">
+      <button class="btn" type="submit">Find bookings</button>
+    </form>
+    <div id="booking-list" class="booking-list"></div>
+    <button id="load-more" class="btn ghost wide" type="button" hidden>Load more</button>
+  </section>
+</main>
+
+<div id="confirmation" class="confirmation" hidden role="status">
+  <div class="confirmation-card">
+    <div class="check" aria-hidden="true">✓</div>
+    <h3>You're booked!</h3>
+    <p class="muted" id="confirm-slot"></p>
+    <dl class="detail-grid">
+      <div><dt>Booking ref</dt><dd><code id="confirm-ref"></code></dd></div>
+      <div><dt>Name</dt><dd id="confirm-name"></dd></div>
+      <div><dt>Email</dt><dd id="confirm-email"></dd></div>
+      <div><dt>Booked</dt><dd id="confirm-created"></dd></div>
+      <div><dt>Status</dt><dd><span class="badge ok" id="confirm-status">confirmed</span></dd></div>
+    </dl>
+    <button id="confirm-close" class="btn ghost" type="button">Back to slots</button>
+  </div>
+</div>
+
+<dialog id="book-dialog" aria-labelledby="dialog-title">
+  <form id="book-form" novalidate>
+    <h3 id="dialog-title">Book appointment</h3>
+    <p class="dialog-time muted" id="dialog-time"></p>
+    <label class="field">Your name
+      <input id="book-name" class="input" type="text" autocomplete="name" required>
+    </label>
+    <label class="field">Email
+      <input id="book-email" class="input" type="email" autocomplete="email" required>
+    </label>
+    <p id="dialog-error" class="form-error" role="alert" hidden></p>
+    <div class="dialog-actions">
+      <button type="button" class="btn ghost" id="dialog-cancel">Back</button>
+      <button type="submit" class="btn" id="dialog-submit">Confirm booking</button>
+    </div>
+  </form>
+</dialog>
+
+<footer class="footer muted">
+  Endpoints: <code>GET /slots</code> · <code>POST /bookings</code> · <code>GET/DELETE /bookings/{id}</code> · all requests carry <code>X-API-Key</code>
+</footer>
+
+<dialog id="key-dialog" aria-labelledby="key-title">
+  <form id="key-form" novalidate>
+    <h3 id="key-title">API key</h3>
+    <p class="muted">Every request sends an <code>X-API-Key</code> header. The
+      server's configured key is filled in below; a key you enter here is
+      stored in your browser and takes priority. Click Save with an empty
+      field to go back to the server key.</p>
+    <label class="field">Key
+      <input id="key-input" class="input" type="text" autocomplete="off" spellcheck="false">
+    </label>
+    <p id="key-error" class="form-error" role="alert" hidden></p>
+    <div class="dialog-actions">
+      <button type="button" class="btn ghost" id="key-cancel">Cancel</button>
+      <button type="submit" class="btn" id="key-save">Save key</button>
+    </div>
+  </form>
+</dialog>
+
+<script src="{% static 'booking/config.js' %}"></script>
+<script>
+  // Server-rendered overrides (still same-host unless CLINIC_API_BASE is set).
+  window.CLINIC_CONFIG = Object.assign({}, window.CLINIC_CONFIG, {
+    apiBase: "{{ api_base|escapejs }}",
+    apiKey: "{{ api_key|escapejs }}",
+  });
+</script>
+<script src="{% static 'booking/app.js' %}"></script>
+</body>
+</html>

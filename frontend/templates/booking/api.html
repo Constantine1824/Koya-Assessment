@@ -1,0 +1,46 @@
+{% load static %}<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Clinic Booking API — explorer</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.17.14/swagger-ui.css">
+  <style>
+    body { margin: 0; background: #fff; }
+    .top { padding: 18px 28px 4px; }
+    .top h1 { margin: 0 0 4px; font: 700 20px/1.3 system-ui, sans-serif; }
+    .top p { margin: 0; color: #63708a; font: 13px/1.5 system-ui, sans-serif; }
+    .top a { color: #2f6bff; text-decoration: none; }
+    .top a:hover { text-decoration: underline; }
+    .back-link { display: inline-block; margin: 10px 28px 0; font: 13px system-ui, sans-serif; }
+    .top { border-bottom: 1px solid #e4e8f2; padding-bottom: 16px; }
+  </style>
+</head>
+<body data-api-key="{{ api_key|escapejs }}">
+<div class="top">
+  <h1>Clinic Booking API</h1>
+  <p>The full contract (levels 1–5) is served from <a href="{% static 'booking/openapi.json' %}">openapi.json</a>.
+     Press <strong>Authorize</strong> to set <code>X-API-Key</code>, then use <strong>Try it out</strong> on any endpoint.
+     Every response body is <code>{"error": "&lt;message&gt;"}</code> on failure.</p>
+</div>
+<div class="back-link"><a href="/">&larr; Back to the booking page</a></div>
+<div id="ui"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.17.14/swagger-ui-bundle.js"></script>
+<script>
+  window.ui = SwaggerUIBundle({
+    url: "{% static 'booking/openapi.json' %}",
+    dom_id: "#ui",
+    docExpansion: "list",
+    defaultModelsExpandDepth: 0,
+    tryItOutEnabled: true,
+    persistAuthorization: true,
+    authorizations: undefined
+  });
+  const KEY = document.body.dataset.apiKey;
+  if (KEY && window.ui && window.ui.preauthorizeApiKey) {
+    window.ui.preauthorizeApiKey("apiKey", KEY);
+  }
+</script>
+</body>
+</html>

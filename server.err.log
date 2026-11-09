@@ -1,0 +1,565 @@
+[09/Nov/2026 10:50:27] "GET /slots HTTP/1.1" 200 12
+[09/Nov/2026 10:50:27,133] - Broken pipe from ('127.0.0.1', 60547)
+[09/Nov/2026 10:51:11] "GET /slots HTTP/1.1" 200 12
+[09/Nov/2026 10:51:11,903] - Broken pipe from ('127.0.0.1', 60550)
+[09/Nov/2026 10:53:18] "POST /reset HTTP/1.1" 200 28
+Unauthorized: /slots
+[09/Nov/2026 10:53:18] "GET /slots HTTP/1.1" 401 39
+Unauthorized: /slots
+[09/Nov/2026 10:53:18] "GET /slots HTTP/1.1" 401 39
+Unauthorized: /bookings
+[09/Nov/2026 10:53:18] "POST /bookings HTTP/1.1" 401 39
+Unauthorized: /bookings/nope
+[09/Nov/2026 10:53:18] "DELETE /bookings/nope HTTP/1.1" 401 39
+[09/Nov/2026 10:53:18] "GET /slots HTTP/1.1" 200 558
+[09/Nov/2026 10:53:18] "GET /slots?provider=Dr%20Bala HTTP/1.1" 200 231
+[09/Nov/2026 10:53:18] "POST /bookings HTTP/1.1" 201 167
+[09/Nov/2026 10:53:18] "GET /bookings/c6a6d6d8-0343-490a-b49e-46293273fc0c HTTP/1.1" 200 167
+Not Found: /bookings/does-not-exist
+[09/Nov/2026 10:53:18] "GET /bookings/does-not-exist HTTP/1.1" 404 29
+Not Found: /bookings/not-a-uuid
+[09/Nov/2026 10:53:18] "GET /bookings/not-a-uuid HTTP/1.1" 404 29
+[09/Nov/2026 10:53:18] "GET /slots HTTP/1.1" 200 559
+Bad Request: /bookings
+[09/Nov/2026 10:53:18] "POST /bookings HTTP/1.1" 400 28
+Bad Request: /bookings
+[09/Nov/2026 10:53:18] "POST /bookings HTTP/1.1" 400 28
+Bad Request: /bookings
+[09/Nov/2026 10:53:18] "POST /bookings HTTP/1.1" 400 30
+Not Found: /bookings
+[09/Nov/2026 10:53:18] "POST /bookings HTTP/1.1" 404 26
+Bad Request: /bookings
+[09/Nov/2026 10:53:18] "POST /bookings HTTP/1.1" 400 36
+[09/Nov/2026 10:53:18] "POST /bookings HTTP/1.1" 201 165
+Bad Request: /bookings
+[09/Nov/2026 10:53:18] "POST /bookings HTTP/1.1" 400 29
+Bad Request: /bookings
+[09/Nov/2026 10:53:18] "POST /bookings HTTP/1.1" 400 48
+Conflict: /bookings
+[09/Nov/2026 10:53:18] "POST /bookings HTTP/1.1" 409 31
+[09/Nov/2026 10:53:18] "DELETE /bookings/c6a6d6d8-0343-490a-b49e-46293273fc0c HTTP/1.1" 200 167
+Conflict: /bookings/c6a6d6d8-0343-490a-b49e-46293273fc0c
+[09/Nov/2026 10:53:18] "DELETE /bookings/c6a6d6d8-0343-490a-b49e-46293273fc0c HTTP/1.1" 409 37
+[09/Nov/2026 10:53:18] "GET /slots HTTP/1.1" 200 559
+[09/Nov/2026 10:53:18] "POST /bookings HTTP/1.1" 201 167
+[09/Nov/2026 10:53:18] "POST /reset HTTP/1.1" 200 28
+[09/Nov/2026 10:53:19] "POST /bookings HTTP/1.1" 201 169
+Conflict: /bookings
+[09/Nov/2026 10:53:19] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 10:53:19] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 10:53:19] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 10:53:19] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 10:53:19] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 10:53:19] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 10:53:19] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 10:53:19] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 10:53:19] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 10:53:19] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 10:53:19] "POST /bookings HTTP/1.1" 409 31
+[09/Nov/2026 10:53:19] "GET /slots HTTP/1.1" 200 340
+[09/Nov/2026 10:53:19] "POST /bookings HTTP/1.1" 201 166
+[09/Nov/2026 10:53:19] "POST /bookings HTTP/1.1" 201 166
+Unprocessable Entity: /bookings
+[09/Nov/2026 10:53:19] "POST /bookings HTTP/1.1" 422 56
+Unprocessable Entity: /bookings
+[09/Nov/2026 10:53:19] "POST /bookings HTTP/1.1" 422 56
+Conflict: /bookings
+[09/Nov/2026 10:53:19] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 10:53:19] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+Conflict: /bookings
+[09/Nov/2026 10:53:19] "POST /bookings HTTP/1.1" 409 31
+[09/Nov/2026 10:53:19] "POST /bookings HTTP/1.1" 409 31
+Not Found: /bookings
+[09/Nov/2026 10:53:19] "POST /bookings HTTP/1.1" 404 26
+Not Found: /bookings
+[09/Nov/2026 10:53:19] "POST /bookings HTTP/1.1" 404 26
+[09/Nov/2026 10:53:19] "POST /reset HTTP/1.1" 200 29
+[09/Nov/2026 10:53:19] "POST /bookings HTTP/1.1" 201 172
+[09/Nov/2026 10:53:19] "POST /bookings HTTP/1.1" 201 172
+[09/Nov/2026 10:53:19] "POST /bookings HTTP/1.1" 201 172
+[09/Nov/2026 10:53:19] "POST /bookings HTTP/1.1" 201 172
+[09/Nov/2026 10:53:19] "POST /bookings HTTP/1.1" 201 172
+Too Many Requests: /bookings
+[09/Nov/2026 10:53:19] "POST /bookings HTTP/1.1" 429 69
+[09/Nov/2026 10:55:07] "POST /reset HTTP/1.1" 200 28
+Unauthorized: /slots
+[09/Nov/2026 10:55:07] "GET /slots HTTP/1.1" 401 39
+Unauthorized: /slots
+[09/Nov/2026 10:55:07] "GET /slots HTTP/1.1" 401 39
+Unauthorized: /bookings
+[09/Nov/2026 10:55:07] "POST /bookings HTTP/1.1" 401 39
+Unauthorized: /bookings/nope
+[09/Nov/2026 10:55:07] "DELETE /bookings/nope HTTP/1.1" 401 39
+[09/Nov/2026 10:55:07] "GET /slots HTTP/1.1" 200 558
+[09/Nov/2026 10:55:07] "GET /slots?provider=Dr%20Bala HTTP/1.1" 200 231
+[09/Nov/2026 10:55:07] "POST /bookings HTTP/1.1" 201 167
+[09/Nov/2026 10:55:07] "GET /bookings/c1ea83cd-a4cf-4108-8b59-d7182e3829c3 HTTP/1.1" 200 167
+Not Found: /bookings/does-not-exist
+[09/Nov/2026 10:55:07] "GET /bookings/does-not-exist HTTP/1.1" 404 29
+Not Found: /bookings/not-a-uuid
+[09/Nov/2026 10:55:07] "GET /bookings/not-a-uuid HTTP/1.1" 404 29
+[09/Nov/2026 10:55:07] "GET /slots HTTP/1.1" 200 559
+Bad Request: /bookings
+[09/Nov/2026 10:55:07] "POST /bookings HTTP/1.1" 400 28
+Bad Request: /bookings
+[09/Nov/2026 10:55:07] "POST /bookings HTTP/1.1" 400 28
+Bad Request: /bookings
+[09/Nov/2026 10:55:07] "POST /bookings HTTP/1.1" 400 30
+Not Found: /bookings
+[09/Nov/2026 10:55:07] "POST /bookings HTTP/1.1" 404 26
+Bad Request: /bookings
+[09/Nov/2026 10:55:07] "POST /bookings HTTP/1.1" 400 36
+[09/Nov/2026 10:55:07] "POST /bookings HTTP/1.1" 201 165
+Bad Request: /bookings
+[09/Nov/2026 10:55:07] "POST /bookings HTTP/1.1" 400 29
+Bad Request: /bookings
+[09/Nov/2026 10:55:07] "POST /bookings HTTP/1.1" 400 48
+Conflict: /bookings
+[09/Nov/2026 10:55:07] "POST /bookings HTTP/1.1" 409 31
+[09/Nov/2026 10:55:07] "DELETE /bookings/c1ea83cd-a4cf-4108-8b59-d7182e3829c3 HTTP/1.1" 200 167
+Conflict: /bookings/c1ea83cd-a4cf-4108-8b59-d7182e3829c3
+[09/Nov/2026 10:55:07] "DELETE /bookings/c1ea83cd-a4cf-4108-8b59-d7182e3829c3 HTTP/1.1" 409 37
+[09/Nov/2026 10:55:07] "GET /slots HTTP/1.1" 200 559
+[09/Nov/2026 10:55:07] "POST /bookings HTTP/1.1" 201 167
+[09/Nov/2026 10:55:07] "POST /reset HTTP/1.1" 200 28
+[09/Nov/2026 10:55:07] "POST /bookings HTTP/1.1" 201 169
+Conflict: /bookings
+[09/Nov/2026 10:55:07] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 10:55:07] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 10:55:07] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 10:55:07] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 10:55:07] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 10:55:07] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 10:55:07] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 10:55:07] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 10:55:07] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 10:55:07] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 10:55:07] "POST /bookings HTTP/1.1" 409 31
+[09/Nov/2026 10:55:07] "GET /slots HTTP/1.1" 200 340
+[09/Nov/2026 10:55:07] "POST /bookings HTTP/1.1" 201 166
+[09/Nov/2026 10:55:07] "POST /bookings HTTP/1.1" 201 166
+Unprocessable Entity: /bookings
+[09/Nov/2026 10:55:07] "POST /bookings HTTP/1.1" 422 56
+Unprocessable Entity: /bookings
+[09/Nov/2026 10:55:07] "POST /bookings HTTP/1.1" 422 56
+Not Found: /bookings
+[09/Nov/2026 10:55:07] "POST /bookings HTTP/1.1" 404 26
+Not Found: /bookings
+Not Found: /bookings
+[09/Nov/2026 10:55:07] "POST /bookings HTTP/1.1" 404 26
+[09/Nov/2026 10:55:07] "POST /bookings HTTP/1.1" 404 26
+Not Found: /bookings
+[09/Nov/2026 10:55:07] "POST /bookings HTTP/1.1" 404 26
+Not Found: /bookings
+[09/Nov/2026 10:55:07] "POST /bookings HTTP/1.1" 404 26
+Not Found: /bookings
+[09/Nov/2026 10:55:07] "POST /bookings HTTP/1.1" 404 26
+[09/Nov/2026 10:55:07] "GET /bookings?email=paged@example.com&limit=5 HTTP/1.1" 200 34
+[09/Nov/2026 10:55:35] "POST /reset HTTP/1.1" 200 28
+Unauthorized: /slots
+[09/Nov/2026 10:55:35] "GET /slots HTTP/1.1" 401 39
+Unauthorized: /slots
+[09/Nov/2026 10:55:35] "GET /slots HTTP/1.1" 401 39
+Unauthorized: /bookings
+[09/Nov/2026 10:55:35] "POST /bookings HTTP/1.1" 401 39
+Unauthorized: /bookings/nope
+[09/Nov/2026 10:55:35] "DELETE /bookings/nope HTTP/1.1" 401 39
+[09/Nov/2026 10:55:35] "GET /slots HTTP/1.1" 200 558
+[09/Nov/2026 10:55:35] "GET /slots?provider=Dr%20Bala HTTP/1.1" 200 231
+[09/Nov/2026 10:55:35] "POST /bookings HTTP/1.1" 201 167
+[09/Nov/2026 10:55:35] "GET /bookings/cfc1a542-980c-411f-9210-48ccf3f36ee2 HTTP/1.1" 200 167
+Not Found: /bookings/does-not-exist
+[09/Nov/2026 10:55:35] "GET /bookings/does-not-exist HTTP/1.1" 404 29
+Not Found: /bookings/not-a-uuid
+[09/Nov/2026 10:55:35] "GET /bookings/not-a-uuid HTTP/1.1" 404 29
+[09/Nov/2026 10:55:35] "GET /slots HTTP/1.1" 200 559
+Bad Request: /bookings
+[09/Nov/2026 10:55:35] "POST /bookings HTTP/1.1" 400 28
+Bad Request: /bookings
+[09/Nov/2026 10:55:35] "POST /bookings HTTP/1.1" 400 28
+Bad Request: /bookings
+[09/Nov/2026 10:55:35] "POST /bookings HTTP/1.1" 400 30
+Not Found: /bookings
+[09/Nov/2026 10:55:35] "POST /bookings HTTP/1.1" 404 26
+Bad Request: /bookings
+[09/Nov/2026 10:55:35] "POST /bookings HTTP/1.1" 400 36
+[09/Nov/2026 10:55:35] "POST /bookings HTTP/1.1" 201 165
+Bad Request: /bookings
+[09/Nov/2026 10:55:35] "POST /bookings HTTP/1.1" 400 29
+Bad Request: /bookings
+[09/Nov/2026 10:55:35] "POST /bookings HTTP/1.1" 400 48
+Conflict: /bookings
+[09/Nov/2026 10:55:35] "POST /bookings HTTP/1.1" 409 31
+[09/Nov/2026 10:55:35] "DELETE /bookings/cfc1a542-980c-411f-9210-48ccf3f36ee2 HTTP/1.1" 200 167
+Conflict: /bookings/cfc1a542-980c-411f-9210-48ccf3f36ee2
+[09/Nov/2026 10:55:35] "DELETE /bookings/cfc1a542-980c-411f-9210-48ccf3f36ee2 HTTP/1.1" 409 37
+[09/Nov/2026 10:55:35] "GET /slots HTTP/1.1" 200 559
+[09/Nov/2026 10:55:35] "POST /bookings HTTP/1.1" 201 167
+[09/Nov/2026 10:55:35] "POST /reset HTTP/1.1" 200 28
+[09/Nov/2026 10:55:35] "POST /bookings HTTP/1.1" 201 169
+Conflict: /bookings
+[09/Nov/2026 10:55:35] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 10:55:35] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 10:55:35] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 10:55:35] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 10:55:35] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 10:55:35] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 10:55:35] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 10:55:35] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 10:55:35] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 10:55:35] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 10:55:35] "POST /bookings HTTP/1.1" 409 31
+[09/Nov/2026 10:55:35] "GET /slots HTTP/1.1" 200 340
+[09/Nov/2026 10:55:35] "POST /reset HTTP/1.1" 200 28
+[09/Nov/2026 10:55:35] "POST /bookings HTTP/1.1" 201 166
+[09/Nov/2026 10:55:35] "POST /bookings HTTP/1.1" 201 166
+Unprocessable Entity: /bookings
+[09/Nov/2026 10:55:35] "POST /bookings HTTP/1.1" 422 56
+Unprocessable Entity: /bookings
+[09/Nov/2026 10:55:35] "POST /bookings HTTP/1.1" 422 56
+[09/Nov/2026 10:55:35] "POST /bookings HTTP/1.1" 201 167
+[09/Nov/2026 10:55:35] "POST /bookings HTTP/1.1" 201 167
+[09/Nov/2026 10:55:35] "POST /bookings HTTP/1.1" 201 167
+[09/Nov/2026 10:55:35] "POST /bookings HTTP/1.1" 201 167
+Not Found: /bookings
+[09/Nov/2026 10:55:35] "POST /bookings HTTP/1.1" 404 26
+Not Found: /bookings
+[09/Nov/2026 10:55:35] "POST /bookings HTTP/1.1" 404 26
+[09/Nov/2026 10:55:38] "GET /bookings?email=paged@example.com&limit=5 HTTP/1.1" 200 34
+Bad Request: /bookings
+[09/Nov/2026 10:55:38] "GET /bookings?email=paged@example.com&limit=0 HTTP/1.1" 400 25
+Bad Request: /bookings
+[09/Nov/2026 10:55:38] "GET /bookings?email=paged@example.com&limit=51 HTTP/1.1" 400 25
+Bad Request: /bookings
+[09/Nov/2026 10:55:38] "GET /bookings?email=paged@example.com&limit=abc HTTP/1.1" 400 25
+Bad Request: /bookings
+[09/Nov/2026 10:55:38] "GET /bookings?email=paged@example.com&limit=-1 HTTP/1.1" 400 25
+Bad Request: /bookings
+[09/Nov/2026 10:55:38] "GET /bookings HTTP/1.1" 400 29
+Bad Request: /bookings
+[09/Nov/2026 10:55:38] "GET /bookings?email=paged@example.com&cursor=!!!not-base64 HTTP/1.1" 400 26
+[09/Nov/2026 10:55:38] "POST /reset HTTP/1.1" 200 28
+Bad Request: /bookings
+[09/Nov/2026 10:55:38] "POST /bookings HTTP/1.1" 400 28
+Bad Request: /bookings
+[09/Nov/2026 10:55:38] "POST /bookings HTTP/1.1" 400 28
+Bad Request: /bookings
+[09/Nov/2026 10:55:38] "POST /bookings HTTP/1.1" 400 28
+Bad Request: /bookings
+[09/Nov/2026 10:55:38] "POST /bookings HTTP/1.1" 400 28
+Bad Request: /bookings
+[09/Nov/2026 10:55:38] "POST /bookings HTTP/1.1" 400 28
+Too Many Requests: /bookings
+[09/Nov/2026 10:55:38] "POST /bookings HTTP/1.1" 429 69
+[09/Nov/2026 10:55:38] "POST /bookings HTTP/1.1" 201 170
+Conflict: /bookings
+[09/Nov/2026 10:55:38] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 10:55:38] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 10:55:38] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 10:55:39] "POST /bookings HTTP/1.1" 409 31
+Too Many Requests: /bookings
+[09/Nov/2026 10:55:39] "POST /bookings HTTP/1.1" 429 69
+Too Many Requests: /bookings
+[09/Nov/2026 10:55:39] "POST /bookings HTTP/1.1" 429 69
+Conflict: /bookings
+[09/Nov/2026 10:55:39] "POST /bookings HTTP/1.1" 409 31
+[09/Nov/2026 10:55:39] "GET / HTTP/1.1" 200 3368
+[09/Nov/2026 10:56:21] "POST /reset HTTP/1.1" 200 28
+Unauthorized: /slots
+[09/Nov/2026 10:56:21] "GET /slots HTTP/1.1" 401 39
+Unauthorized: /slots
+[09/Nov/2026 10:56:21] "GET /slots HTTP/1.1" 401 39
+Unauthorized: /bookings
+[09/Nov/2026 10:56:21] "POST /bookings HTTP/1.1" 401 39
+Unauthorized: /bookings/nope
+[09/Nov/2026 10:56:21] "DELETE /bookings/nope HTTP/1.1" 401 39
+[09/Nov/2026 10:56:21] "GET /slots HTTP/1.1" 200 558
+[09/Nov/2026 10:56:21] "GET /slots?provider=Dr%20Bala HTTP/1.1" 200 231
+[09/Nov/2026 10:56:21] "POST /bookings HTTP/1.1" 201 167
+[09/Nov/2026 10:56:21] "GET /bookings/c405ace5-04ea-4ad2-8856-bcd65279bf28 HTTP/1.1" 200 167
+Not Found: /bookings/does-not-exist
+[09/Nov/2026 10:56:21] "GET /bookings/does-not-exist HTTP/1.1" 404 29
+Not Found: /bookings/not-a-uuid
+[09/Nov/2026 10:56:21] "GET /bookings/not-a-uuid HTTP/1.1" 404 29
+[09/Nov/2026 10:56:21] "GET /slots HTTP/1.1" 200 559
+Bad Request: /bookings
+[09/Nov/2026 10:56:21] "POST /bookings HTTP/1.1" 400 28
+Bad Request: /bookings
+[09/Nov/2026 10:56:21] "POST /bookings HTTP/1.1" 400 28
+Bad Request: /bookings
+[09/Nov/2026 10:56:21] "POST /bookings HTTP/1.1" 400 30
+Not Found: /bookings
+[09/Nov/2026 10:56:21] "POST /bookings HTTP/1.1" 404 26
+Bad Request: /bookings
+[09/Nov/2026 10:56:21] "POST /bookings HTTP/1.1" 400 36
+[09/Nov/2026 10:56:21] "POST /bookings HTTP/1.1" 201 165
+Bad Request: /bookings
+[09/Nov/2026 10:56:21] "POST /bookings HTTP/1.1" 400 29
+Bad Request: /bookings
+[09/Nov/2026 10:56:21] "POST /bookings HTTP/1.1" 400 48
+Conflict: /bookings
+[09/Nov/2026 10:56:21] "POST /bookings HTTP/1.1" 409 31
+[09/Nov/2026 10:56:21] "DELETE /bookings/c405ace5-04ea-4ad2-8856-bcd65279bf28 HTTP/1.1" 200 167
+Conflict: /bookings/c405ace5-04ea-4ad2-8856-bcd65279bf28
+[09/Nov/2026 10:56:21] "DELETE /bookings/c405ace5-04ea-4ad2-8856-bcd65279bf28 HTTP/1.1" 409 37
+[09/Nov/2026 10:56:21] "GET /slots HTTP/1.1" 200 559
+[09/Nov/2026 10:56:21] "POST /bookings HTTP/1.1" 201 167
+[09/Nov/2026 10:56:21] "POST /reset HTTP/1.1" 200 28
+[09/Nov/2026 10:56:21] "POST /bookings HTTP/1.1" 201 169
+Conflict: /bookings
+[09/Nov/2026 10:56:21] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 10:56:21] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 10:56:21] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 10:56:21] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 10:56:21] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 10:56:21] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 10:56:21] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 10:56:22] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 10:56:22] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 10:56:22] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 10:56:22] "POST /bookings HTTP/1.1" 409 31
+[09/Nov/2026 10:56:22] "GET /slots HTTP/1.1" 200 340
+[09/Nov/2026 10:56:22] "POST /reset HTTP/1.1" 200 28
+[09/Nov/2026 10:56:22] "POST /bookings HTTP/1.1" 201 166
+[09/Nov/2026 10:56:22] "POST /bookings HTTP/1.1" 201 166
+Unprocessable Entity: /bookings
+[09/Nov/2026 10:56:22] "POST /bookings HTTP/1.1" 422 56
+Unprocessable Entity: /bookings
+[09/Nov/2026 10:56:22] "POST /bookings HTTP/1.1" 422 56
+[09/Nov/2026 10:56:22] "POST /bookings HTTP/1.1" 201 167
+[09/Nov/2026 10:56:22] "POST /bookings HTTP/1.1" 201 167
+[09/Nov/2026 10:56:22] "POST /bookings HTTP/1.1" 201 167
+[09/Nov/2026 10:56:22] "POST /bookings HTTP/1.1" 201 167
+Not Found: /bookings
+[09/Nov/2026 10:56:22] "POST /bookings HTTP/1.1" 404 26
+Not Found: /bookings
+[09/Nov/2026 10:56:22] "POST /bookings HTTP/1.1" 404 26
+[09/Nov/2026 10:56:25] "GET /bookings?email=paged@example.com&limit=5 HTTP/1.1" 200 1012
+[09/Nov/2026 10:56:25] "GET /bookings?email=PAGED@example.com&limit=5&cursor=eyJjIjogIjIwMjYtMTEtMDlUMDc6MTY6MjQuNTkwMTQ5KzAwOjAwIiwgImkiOiAiMTljN2MzODctMTJkMC00MjQ5LWE2ZTMtOTMzYjJhYTRiZmUzIn0= HTTP/1.1" 200 1012
+[09/Nov/2026 10:56:25] "GET /bookings?email=PAGED@example.com&limit=5&cursor=eyJjIjogIjIwMjYtMTEtMDlUMDg6MDY6MjQuNTkwMTQ5KzAwOjAwIiwgImkiOiAiNjc0YjY4ODItYmFlOC00OTExLWFhM2UtN2U5ZThiZGI3YmUxIn0= HTTP/1.1" 200 898
+Bad Request: /bookings
+[09/Nov/2026 10:56:25] "GET /bookings?email=paged@example.com&limit=0 HTTP/1.1" 400 25
+Bad Request: /bookings
+[09/Nov/2026 10:56:25] "GET /bookings?email=paged@example.com&limit=51 HTTP/1.1" 400 25
+Bad Request: /bookings
+[09/Nov/2026 10:56:25] "GET /bookings?email=paged@example.com&limit=abc HTTP/1.1" 400 25
+Bad Request: /bookings
+[09/Nov/2026 10:56:25] "GET /bookings?email=paged@example.com&limit=-1 HTTP/1.1" 400 25
+Bad Request: /bookings
+[09/Nov/2026 10:56:25] "GET /bookings HTTP/1.1" 400 29
+Bad Request: /bookings
+[09/Nov/2026 10:56:25] "GET /bookings?email=paged@example.com&cursor=!!!not-base64 HTTP/1.1" 400 26
+[09/Nov/2026 10:56:25] "POST /reset HTTP/1.1" 200 28
+Bad Request: /bookings
+[09/Nov/2026 10:56:25] "POST /bookings HTTP/1.1" 400 28
+Bad Request: /bookings
+[09/Nov/2026 10:56:25] "POST /bookings HTTP/1.1" 400 28
+Bad Request: /bookings
+[09/Nov/2026 10:56:25] "POST /bookings HTTP/1.1" 400 28
+Bad Request: /bookings
+[09/Nov/2026 10:56:25] "POST /bookings HTTP/1.1" 400 28
+Bad Request: /bookings
+[09/Nov/2026 10:56:25] "POST /bookings HTTP/1.1" 400 28
+Too Many Requests: /bookings
+[09/Nov/2026 10:56:25] "POST /bookings HTTP/1.1" 429 69
+[09/Nov/2026 10:56:25] "POST /bookings HTTP/1.1" 201 170
+Conflict: /bookings
+[09/Nov/2026 10:56:25] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 10:56:25] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 10:56:25] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 10:56:25] "POST /bookings HTTP/1.1" 409 31
+Too Many Requests: /bookings
+[09/Nov/2026 10:56:25] "POST /bookings HTTP/1.1" 429 69
+Conflict: /bookings
+[09/Nov/2026 10:56:25] "POST /bookings HTTP/1.1" 409 31
+[09/Nov/2026 10:56:25] "GET / HTTP/1.1" 200 3368
+[09/Nov/2026 10:56:25] "GET /static/booking/app.js HTTP/1.1" 200 12762
+[09/Nov/2026 11:03:11] "POST /reset HTTP/1.1" 200 28
+Unauthorized: /slots
+[09/Nov/2026 11:03:11] "GET /slots HTTP/1.1" 401 39
+Unauthorized: /slots
+[09/Nov/2026 11:03:11] "GET /slots HTTP/1.1" 401 39
+Unauthorized: /bookings
+[09/Nov/2026 11:03:11] "POST /bookings HTTP/1.1" 401 39
+Unauthorized: /bookings/nope
+[09/Nov/2026 11:03:11] "DELETE /bookings/nope HTTP/1.1" 401 39
+[09/Nov/2026 11:03:11] "GET /slots HTTP/1.1" 200 558
+[09/Nov/2026 11:03:11] "GET /slots?provider=Dr%20Bala HTTP/1.1" 200 231
+[09/Nov/2026 11:03:11] "POST /bookings HTTP/1.1" 201 167
+[09/Nov/2026 11:03:11] "GET /bookings/7a1a4070-d2d1-4fd0-a323-a93ce55e4c6b HTTP/1.1" 200 167
+Not Found: /bookings/does-not-exist
+[09/Nov/2026 11:03:11] "GET /bookings/does-not-exist HTTP/1.1" 404 29
+Not Found: /bookings/not-a-uuid
+[09/Nov/2026 11:03:11] "GET /bookings/not-a-uuid HTTP/1.1" 404 29
+[09/Nov/2026 11:03:11] "GET /slots HTTP/1.1" 200 559
+Bad Request: /bookings
+[09/Nov/2026 11:03:11] "POST /bookings HTTP/1.1" 400 28
+Bad Request: /bookings
+[09/Nov/2026 11:03:11] "POST /bookings HTTP/1.1" 400 28
+Bad Request: /bookings
+[09/Nov/2026 11:03:11] "POST /bookings HTTP/1.1" 400 30
+Not Found: /bookings
+[09/Nov/2026 11:03:11] "POST /bookings HTTP/1.1" 404 26
+Bad Request: /bookings
+[09/Nov/2026 11:03:11] "POST /bookings HTTP/1.1" 400 36
+[09/Nov/2026 11:03:11] "POST /bookings HTTP/1.1" 201 165
+Bad Request: /bookings
+[09/Nov/2026 11:03:11] "POST /bookings HTTP/1.1" 400 29
+Bad Request: /bookings
+[09/Nov/2026 11:03:11] "POST /bookings HTTP/1.1" 400 48
+Conflict: /bookings
+[09/Nov/2026 11:03:11] "POST /bookings HTTP/1.1" 409 31
+[09/Nov/2026 11:03:11] "DELETE /bookings/7a1a4070-d2d1-4fd0-a323-a93ce55e4c6b HTTP/1.1" 200 167
+Conflict: /bookings/7a1a4070-d2d1-4fd0-a323-a93ce55e4c6b
+[09/Nov/2026 11:03:11] "DELETE /bookings/7a1a4070-d2d1-4fd0-a323-a93ce55e4c6b HTTP/1.1" 409 37
+[09/Nov/2026 11:03:11] "GET /slots HTTP/1.1" 200 559
+[09/Nov/2026 11:03:11] "POST /bookings HTTP/1.1" 201 167
+[09/Nov/2026 11:03:11] "POST /reset HTTP/1.1" 200 28
+[09/Nov/2026 11:03:11] "POST /bookings HTTP/1.1" 201 169
+Conflict: /bookings
+[09/Nov/2026 11:03:11] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 11:03:11] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 11:03:11] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 11:03:11] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 11:03:11] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 11:03:11] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 11:03:11] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 11:03:11] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 11:03:11] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 11:03:11] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 11:03:11] "POST /bookings HTTP/1.1" 409 31
+[09/Nov/2026 11:03:11] "GET /slots HTTP/1.1" 200 340
+[09/Nov/2026 11:03:11] "POST /reset HTTP/1.1" 200 28
+[09/Nov/2026 11:03:11] "POST /bookings HTTP/1.1" 201 166
+[09/Nov/2026 11:03:11] "POST /bookings HTTP/1.1" 201 166
+Unprocessable Entity: /bookings
+[09/Nov/2026 11:03:11] "POST /bookings HTTP/1.1" 422 56
+Unprocessable Entity: /bookings
+[09/Nov/2026 11:03:11] "POST /bookings HTTP/1.1" 422 56
+[09/Nov/2026 11:03:12] "POST /bookings HTTP/1.1" 201 167
+[09/Nov/2026 11:03:12] "POST /bookings HTTP/1.1" 201 167
+[09/Nov/2026 11:03:12] "POST /bookings HTTP/1.1" 201 167
+[09/Nov/2026 11:03:12] "POST /bookings HTTP/1.1" 201 167
+Not Found: /bookings
+[09/Nov/2026 11:03:12] "POST /bookings HTTP/1.1" 404 26
+Not Found: /bookings
+[09/Nov/2026 11:03:12] "POST /bookings HTTP/1.1" 404 26
+[09/Nov/2026 11:03:14] "GET /bookings?email=paged@example.com&limit=5 HTTP/1.1" 200 1012
+[09/Nov/2026 11:03:14] "GET /bookings?email=PAGED@example.com&limit=5&cursor=eyJjIjogIjIwMjYtMTEtMDlUMDc6MjM6MTQuMTgyNTE3KzAwOjAwIiwgImkiOiAiNmUyNTQ0N2UtMjE0Ni00YzU4LTlmMzAtYjNiMDEyZWJiMjU1In0= HTTP/1.1" 200 1012
+[09/Nov/2026 11:03:14] "GET /bookings?email=PAGED@example.com&limit=5&cursor=eyJjIjogIjIwMjYtMTEtMDlUMDg6MTM6MTQuMTgyNTE3KzAwOjAwIiwgImkiOiAiNWVkMmQ5ZDUtZmE5OC00ZThlLTkzNWItNTgxMzc2ZGMyYWE2In0= HTTP/1.1" 200 898
+Bad Request: /bookings
+[09/Nov/2026 11:03:14] "GET /bookings?email=paged@example.com&limit=0 HTTP/1.1" 400 25
+Bad Request: /bookings
+[09/Nov/2026 11:03:14] "GET /bookings?email=paged@example.com&limit=51 HTTP/1.1" 400 25
+Bad Request: /bookings
+[09/Nov/2026 11:03:14] "GET /bookings?email=paged@example.com&limit=abc HTTP/1.1" 400 25
+Bad Request: /bookings
+[09/Nov/2026 11:03:14] "GET /bookings?email=paged@example.com&limit=-1 HTTP/1.1" 400 25
+Bad Request: /bookings
+[09/Nov/2026 11:03:14] "GET /bookings HTTP/1.1" 400 29
+Bad Request: /bookings
+[09/Nov/2026 11:03:14] "GET /bookings?email=paged@example.com&cursor=!!!not-base64 HTTP/1.1" 400 26
+[09/Nov/2026 11:03:14] "POST /reset HTTP/1.1" 200 28
+Bad Request: /bookings
+[09/Nov/2026 11:03:14] "POST /bookings HTTP/1.1" 400 28
+Bad Request: /bookings
+[09/Nov/2026 11:03:14] "POST /bookings HTTP/1.1" 400 28
+Bad Request: /bookings
+[09/Nov/2026 11:03:14] "POST /bookings HTTP/1.1" 400 28
+Bad Request: /bookings
+[09/Nov/2026 11:03:14] "POST /bookings HTTP/1.1" 400 28
+Bad Request: /bookings
+[09/Nov/2026 11:03:14] "POST /bookings HTTP/1.1" 400 28
+Too Many Requests: /bookings
+[09/Nov/2026 11:03:14] "POST /bookings HTTP/1.1" 429 69
+[09/Nov/2026 11:03:14] "POST /bookings HTTP/1.1" 201 170
+Conflict: /bookings
+[09/Nov/2026 11:03:14] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 11:03:14] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 11:03:14] "POST /bookings HTTP/1.1" 409 31
+Conflict: /bookings
+[09/Nov/2026 11:03:14] "POST /bookings HTTP/1.1" 409 31
+Too Many Requests: /bookings
+[09/Nov/2026 11:03:14] "POST /bookings HTTP/1.1" 429 69
+Conflict: /bookings
+[09/Nov/2026 11:03:14] "POST /bookings HTTP/1.1" 409 31
+[09/Nov/2026 11:03:14] "GET / HTTP/1.1" 200 3368
+[09/Nov/2026 11:03:14] "GET /static/booking/app.js HTTP/1.1" 200 12762
+[09/Nov/2026 11:04:29] "GET / HTTP/1.1" 200 3368
+[09/Nov/2026 11:04:29,877] - Broken pipe from ('127.0.0.1', 64796)
+[09/Nov/2026 11:08:22] "GET / HTTP/1.1" 200 3368
+[09/Nov/2026 11:08:22] "GET /static/booking/style.css HTTP/1.1" 200 7359
+[09/Nov/2026 11:08:22] "GET /static/booking/app.js HTTP/1.1" 200 12762
+[09/Nov/2026 11:08:25] "GET /slots HTTP/1.1" 200 122
+Unauthorized: /favicon.ico
+[09/Nov/2026 11:08:25] "GET /favicon.ico HTTP/1.1" 401 39
+[09/Nov/2026 11:09:29] "GET / HTTP/1.1" 200 3368
+[09/Nov/2026 11:09:30] "GET /slots HTTP/1.1" 200 122
+Unauthorized: /favicon.ico
+[09/Nov/2026 11:09:30] "GET /favicon.ico HTTP/1.1" 401 39
+[09/Nov/2026 11:10:58] "GET / HTTP/1.1" 200 3368
+[09/Nov/2026 11:10:58] "GET /static/booking/app.js HTTP/1.1" 304 0
+[09/Nov/2026 11:10:58] "GET /static/booking/style.css HTTP/1.1" 304 0
+[09/Nov/2026 11:10:58] "GET /slots HTTP/1.1" 200 122
+Unauthorized: /favicon.ico
+[09/Nov/2026 11:10:58] "GET /favicon.ico HTTP/1.1" 401 39
