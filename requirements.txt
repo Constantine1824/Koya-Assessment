@@ -5,5 +5,8 @@ django-cors-headers==4.9.0
 psycopg[binary]==3.3.8
 whitenoise==6.12.0
 
+# production WSGI server (Linux/Render; Windows local serving uses waitress)
+gunicorn==23.0.0
+
 # dev / verification (not needed in production)
 requests==2.34.2

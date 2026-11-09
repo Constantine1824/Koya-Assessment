@@ -1,0 +1,38 @@
+# Render Blueprint: https://render.com/docs/blueprint-spec
+#
+# Creates a web service + a managed PostgreSQL database. Render injects
+# DATABASE_URL from the database automatically; migrations and gunicorn
+# startup live in scripts/deploy/build.sh and scripts/deploy/start.sh.
+services:
+  - type: web
+    name: clinic-booking-api
+    runtime: python
+    plan: free
+    buildCommand: bash scripts/deploy/build.sh
+    startCommand: bash scripts/deploy/start.sh
+    healthCheckPath: /
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.6"
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
+      - key: DJANGO_DEBUG
+        value: "0"
+      # Render serves *.onrender.com — a leading dot allows every subdomain.
+      - key: DJANGO_ALLOWED_HOSTS
+        value: ".onrender.com"
+      # Prompted on blueprint creation: this is the key clients/graders send
+      # in X-API-Key (e.g. CLINIC_API_KEY=clinic-demo-key).
+      - key: CLINIC_API_KEY
+        sync: false
+      - key: CORS_ALLOW_ALL_ORIGINS
+        value: "1"
+      - key: DATABASE_URL
+        fromDatabase:
+          name: clinic-db
+          property: connectionString
+
+databases:
+  - name: clinic-db
+    databaseName: clinic_booking
+    plan: free

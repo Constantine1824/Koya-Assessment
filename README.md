@@ -43,6 +43,29 @@ gunicorn clinic.wsgi:application --bind 0.0.0.0:8000
 # Windows-local: venv\Scripts\waitress-serve --listen=0.0.0.0:8000 clinic.wsgi:application
 ```
 
+### On Render (one-click-ish)
+
+`render.yaml` at the repo root is a render Blueprint that defines the web
+service and a managed PostgreSQL database for you:
+
+1. Push this repo to GitHub/GitLab.
+2. Render dashboard → **New → Blueprint** → pick the repo. Render reads
+   `render.yaml`, creates the service and the `clinic-db` Postgres, and
+   injects `DATABASE_URL` automatically (secret key is generated).
+3. You'll be prompted for `CLINIC_API_KEY` (`sync: false`) — set the value
+   your clients/graders will send in `X-API-Key`.
+4. On each deploy, `scripts/deploy/build.sh` runs: installs deps, verifies
+   `DATABASE_URL`, runs `collectstatic` + `migrate`, then
+   `scripts/deploy/start.sh` boots gunicorn bound to Render's `$PORT`.
+
+No blueprint? Create the service manually with
+**Build Command** `bash scripts/deploy/build.sh` and
+**Start Command** `bash scripts/deploy/start.sh`, then add the env vars
+from `.env.example` (plus `DATABASE_URL` from your attached Postgres).
+
+Note: Render's free Postgres tier expires after 30 days — upgrade the
+database plan for a persistent clinic deployment.
+
 Static assets for the page are served through whitenoise; no
 `collectstatic` step is needed. Behind a TLS-terminating proxy the app
 already honors `X-Forwarded-Proto`.
