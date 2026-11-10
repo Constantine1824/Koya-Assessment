@@ -18,6 +18,12 @@ ALLOWED_HOSTS = [
     if h.strip()
 ]
 
+# Render sets this automatically on every service; trusting it means manual
+# dashboard deploys work without remembering to extend DJANGO_ALLOWED_HOSTS.
+_render_host = os.environ.get("RENDER_EXTERNAL_HOSTNAME")
+if _render_host and _render_host not in ALLOWED_HOSTS:
+    ALLOWED_HOSTS.append(_render_host)
+
 INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",
