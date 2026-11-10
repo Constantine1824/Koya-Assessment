@@ -20,6 +20,9 @@ python manage.py collectstatic --noinput
 echo "==> Applying database migrations"
 python manage.py migrate --noinput
 
+echo "==> First-build seeding (no-op if slots already exist)"
+python manage.py seed_slots
+
 echo "==> Django system check (deploy mode; warnings are non-fatal here)"
 python manage.py check --deploy || true
 

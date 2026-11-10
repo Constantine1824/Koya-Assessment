@@ -403,3 +403,18 @@ class Level5Tests(BaseMixin, TestCase):
         self.assertEqual(replay.status_code, 201)
         self.assertEqual(replay.json(), first.json())
         self.assertEqual(Booking.objects.count(), 1)
+
+
+class SeedSlotsTests(TestCase):
+    def test_seeds_only_when_empty_and_is_idempotent(self):
+        from django.core.management import call_command
+
+        # Fresh database: seeds the standard slot set.
+        Slot.objects.all().delete()
+        call_command("seed_slots", stdout=None)
+        self.assertEqual(Slot.objects.count(), 6)
+        self.assertTrue(all(s.start > timezone.now() for s in Slot.objects.all()))
+
+        # Re-running on every build changes nothing.
+        call_command("seed_slots", stdout=None)
+        self.assertEqual(Slot.objects.count(), 6)
