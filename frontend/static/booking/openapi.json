@@ -145,7 +145,7 @@
     }
   ],
   "paths": {
-    "/reset": {
+    "/api/reset": {
       "post": {
         "summary": "Level 1 \u00b7 Replace all slots",
         "description": "Deletes every booking and replaces all slots with the ones you send, including slots in the past.",
@@ -177,7 +177,7 @@
         }
       }
     },
-    "/slots": {
+    "/api/slots": {
       "get": {
         "summary": "Level 1 \u00b7 List slots",
         "description": "Every slot, earliest `start` first.",
@@ -214,7 +214,7 @@
         }
       }
     },
-    "/bookings": {
+    "/api/bookings": {
       "post": {
         "summary": "Book a slot (levels 1\u20135)",
         "description": "**Level 1:** returns 201 with the booking, status `confirmed`.\n\n**Level 2:** **400** if `slot_id`, `name` or `email` is missing or empty, or the email isn't valid. **404** if the slot doesn't exist. **400** if the slot has already started. Trim spaces from `name` and `email`, and store `email` in lower case.\n\n**Level 3:** a slot that already has a confirmed booking returns **409**. This must hold when many requests arrive at the same moment.\n\n**Level 4:** the optional `Idempotency-Key` header. The same key with the same body returns the same response (same status code, same booking `id`) and never creates a second booking. The same key with a different body returns **422**.\n\n**Level 5:** at most 5 attempts per email per minute, failed attempts included. The 6th returns **429** with a `Retry-After` header in whole seconds. Other emails aren't affected.",
@@ -379,7 +379,7 @@
         }
       }
     },
-    "/bookings/{id}": {
+    "/api/bookings/{id}": {
       "parameters": [
         {
           "name": "id",

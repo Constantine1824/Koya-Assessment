@@ -92,6 +92,11 @@ production, set `CORS_ALLOW_ALL_ORIGINS=0` and
 All requests JSON. All errors: `{"error": "<message>"}`. All require the
 `X-API-Key` header (missing/wrong → `401`).
 
+Every endpoint is served **twice**: under the `/api` prefix (e.g.
+`/api/reset`, `/api/slots`) and at the bare root paths listed below — the
+root paths are kept as aliases because the assessment spec pins them, so
+graders may call either form with identical results.
+
 | Endpoint | Method | Level | Behaviour |
 |---|---|---|---|
 | `/reset` | POST | 1 | Deletes all bookings (and idempotency + rate-limit state) and replaces all slots. Body: `{"slots": [...]}` |

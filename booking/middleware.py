@@ -3,7 +3,7 @@ import secrets
 from django.conf import settings
 from django.http import JsonResponse
 
-EXEMPT_PATHS = ("/", "/api", "/favicon.ico")
+EXEMPT_PATHS = ("/", "/api", "/api/", "/favicon.ico")
 EXEMPT_PREFIXES = ("/static/",)
 
 

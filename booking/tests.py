@@ -499,6 +499,52 @@ class RollingDemoSlotsTests(TestCase):
         self.assertEqual(Slot.objects.count(), 6)
 
 
+class ApiPrefixTests(BaseMixin, TestCase):
+    """The API is mounted twice: at the root (spec-contract paths) and
+    under /api/. Both mounts must behave identically."""
+
+    def setUp(self):
+        super().setUp()
+        self.reset_data()
+
+    def test_api_prefix_mirrors_root_slots(self):
+        root = self.client.get("/slots").json()
+        prefixed = self.client.get("/api/slots").json()
+        self.assertEqual(root, prefixed)
+
+    def test_api_prefix_full_booking_flow(self):
+        response = self.client.post(
+            "/api/bookings",
+            {"slot_id": "s1", "name": "Prefix User", "email": "prefix@example.com"},
+            format="json",
+        )
+        self.assertEqual(response.status_code, 201)
+        booking_id = response.json()["id"]
+
+        detail = self.client.get(f"/api/bookings/{booking_id}")
+        self.assertEqual(detail.status_code, 200)
+
+        deleted = self.client.delete(f"/api/bookings/{booking_id}")
+        self.assertEqual(deleted.status_code, 200)
+
+        listed = self.client.get("/api/bookings", {"email": "prefix@example.com"})
+        self.assertEqual(listed.json()["bookings"][0]["status"], "cancelled")
+
+    def test_api_prefix_reset(self):
+        response = self.client.post("/api/reset", {"slots": default_slots()}, format="json")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(self.client.get("/api/slots").json(), self.client.get("/slots").json())
+
+    def test_api_prefix_requires_the_key(self):
+        self.assertEqual(APIClient().get("/api/slots").status_code, 401)
+
+    def test_api_docs_page_and_trailing_slash_redirect(self):
+        self.assertEqual(self.client.get("/api", HTTP_X_API_KEY=KEY).status_code, 200)
+        response = self.client.get("/api/")
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response["Location"], "/api")
+
+
 class DemoRefreshEndpointTests(TestCase):
     """The page's Refresh button: POST /refresh-slots re-rolls stale demo
     times with explicit human consent (bypasses the quiet-window guard,
