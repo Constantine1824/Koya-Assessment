@@ -418,3 +418,52 @@ class SeedSlotsTests(TestCase):
         # Re-running on every build changes nothing.
         call_command("seed_slots", stdout=None)
         self.assertEqual(Slot.objects.count(), 6)
+
+
+class RollingDemoSlotsTests(TestCase):
+    def setUp(self):
+        from .demo_slots import ensure_fresh_demo_slots
+
+        self.ensure = ensure_fresh_demo_slots
+
+    def test_page_view_re_rolls_stale_pristine_database(self):
+        Slot.objects.all().delete()
+        past = timezone.now() - timedelta(days=30)
+        Slot.objects.create(id="d1", provider="Dr Ade", start=past, end=past + timedelta(minutes=30))
+        self.assertEqual(Slot.objects.count(), 1)  # stale and alone
+
+        created = self.ensure()
+        self.assertEqual(created, 6)
+        self.assertEqual(Slot.objects.count(), 6)
+        self.assertTrue(all(s.start > timezone.now() for s in Slot.objects.all()))
+
+    def test_still_fresh_database_is_a_no_op(self):
+        self.ensure()
+        before = list(Slot.objects.all())
+        self.assertEqual(self.ensure(), 0)
+        self.assertEqual(list(Slot.objects.all()), before)
+
+    def test_never_touches_a_database_with_any_activity(self):
+        self.ensure()
+        Slot.objects.all().delete()  # no future slots, but...
+        legacy = Slot.objects.create(
+            id="legacy", provider="Dr Ade",
+            start=timezone.now() - timedelta(hours=1),
+            end=timezone.now() - timedelta(minutes=30),
+        )
+        Booking.objects.create(  # ...one booking means real usage
+            slot=legacy, name="Grader", email="grader@example.com",
+        )
+        self.assertTrue(Booking.objects.exists())
+        self.assertEqual(self.ensure(), 0)
+        self.assertEqual(Slot.objects.count(), 1)  # grader data untouched
+
+    def test_activity_of_any_kind_blocks_the_refresh(self):
+        self.ensure()
+        Slot.objects.all().delete()
+        IdempotencyRecord.objects.create(key="k1", request_hash="h1")
+        self.assertEqual(self.ensure(), 0)
+        IdempotencyRecord.objects.all().delete()
+        BookingAttempt.objects.create(email="grader@example.com")
+        self.assertEqual(self.ensure(), 0)
+        self.assertEqual(Slot.objects.count(), 0)

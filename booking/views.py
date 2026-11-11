@@ -49,6 +49,12 @@ def error_response(message, status_code, headers=None):
 
 
 def page_view(request):
+    from .demo_slots import ensure_fresh_demo_slots
+
+    # Keeps a deployed page usable whenever it is first visited, however
+    # long after the build; a no-op the moment the database has any
+    # activity (see demo_slots docstring).
+    ensure_fresh_demo_slots()
     return render(
         request,
         "booking/index.html",
