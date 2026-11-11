@@ -156,12 +156,14 @@
         badge.className = "badge taken";
         btn.textContent = "Unavailable";
         btn.disabled = true;
-      } else if (isPast(slot)) {
-        badge.textContent = "Started";
-        badge.className = "badge taken";
-        btn.textContent = "Started";
-        btn.disabled = true;
-      } else {
+      }
+      // else if (isPast(slot)) {
+      //   badge.textContent = "Started";
+      //   badge.className = "badge taken";
+      //   btn.textContent = "Started";
+      //   btn.disabled = true;
+      // }
+      else {
         badge.textContent = "Available";
         badge.className = "badge ok";
         btn.textContent = "Book";
