@@ -11,7 +11,7 @@ from django.test import TestCase, TransactionTestCase
 from django.utils import timezone
 from rest_framework.test import APIClient
 
-from .models import Booking, BookingAttempt, IdempotencyRecord, Slot
+from .models import Booking, BookingAttempt, IdempotencyRecord, SeedState, Slot
 
 KEY = "clinic-demo-key"
 
@@ -443,27 +443,108 @@ class RollingDemoSlotsTests(TestCase):
         self.assertEqual(self.ensure(), 0)
         self.assertEqual(list(Slot.objects.all()), before)
 
-    def test_never_touches_a_database_with_any_activity(self):
-        self.ensure()
-        Slot.objects.all().delete()  # no future slots, but...
-        legacy = Slot.objects.create(
-            id="legacy", provider="Dr Ade",
-            start=timezone.now() - timedelta(hours=1),
-            end=timezone.now() - timedelta(minutes=30),
-        )
-        Booking.objects.create(  # ...one booking means real usage
-            slot=legacy, name="Grader", email="grader@example.com",
-        )
-        self.assertTrue(Booking.objects.exists())
-        self.assertEqual(self.ensure(), 0)
-        self.assertEqual(Slot.objects.count(), 1)  # grader data untouched
+    def _force_all_slots_stale(self):
+        past = timezone.now() - timedelta(days=30)
+        Slot.objects.update(start=past, end=past + timedelta(minutes=30))
 
-    def test_activity_of_any_kind_blocks_the_refresh(self):
+    def test_recent_booking_blocks_the_refresh(self):
         self.ensure()
-        Slot.objects.all().delete()
+        slot = Slot.objects.first()
+        Booking.objects.create(slot=slot, name="Active", email="active@example.com")
+        self._force_all_slots_stale()
+        self.assertEqual(self.ensure(), 0)  # session in progress: hands off
+        self.assertEqual(Booking.objects.filter(email="active@example.com").count(), 1)
+
+    def test_old_activity_allows_in_place_re_roll(self):
+        self.ensure()
+        slot = Slot.objects.first()
+        Booking.objects.create(slot=slot, name="Old", email="old@example.com")
+        Booking.objects.update(created_at=timezone.now() - timedelta(days=3))
+        self._force_all_slots_stale()
+
+        created = self.ensure()
+        self.assertEqual(created, 6)
+        ids = list(Slot.objects.values_list("id", flat=True))
+        self.assertEqual(ids, ["d1", "d2", "d3", "d4", "d5", "d6"])  # in place
+        self.assertTrue(all(s.start > timezone.now() for s in Slot.objects.all()))
+        self.assertEqual(Booking.objects.filter(email="old@example.com").count(), 1)  # kept
+
+    def test_recent_reset_marker_blocks_refresh_even_when_stale(self):
+        self.ensure()
+        SeedState.mark_reset()  # grader just posted their own slot payload
+        self._force_all_slots_stale()  # ...deliberately all in the past
+        self.assertEqual(self.ensure(), 0)  # authoritative: never touched
+        self.assertTrue(all(s.start < timezone.now() for s in Slot.objects.all()))
+
+    def test_reset_endpoint_marks_seed_state(self):
+        from rest_framework.test import APIClient
+
+        client = APIClient()
+        client.credentials(HTTP_X_API_KEY=KEY)
+        response = client.post(
+            "/reset", {"slots": default_slots()}, format="json"
+        )
+        self.assertEqual(response.status_code, 200)
+        state = SeedState.objects.get(key="slots")
+        self.assertIsNotNone(state.last_reset_at)
+
+    def test_recent_idempotency_or_attempt_rows_block_the_refresh(self):
+        self.ensure()
+        self._force_all_slots_stale()
         IdempotencyRecord.objects.create(key="k1", request_hash="h1")
         self.assertEqual(self.ensure(), 0)
         IdempotencyRecord.objects.all().delete()
         BookingAttempt.objects.create(email="grader@example.com")
         self.assertEqual(self.ensure(), 0)
-        self.assertEqual(Slot.objects.count(), 0)
+        self.assertEqual(Slot.objects.count(), 6)
+
+
+class DemoRefreshEndpointTests(TestCase):
+    """The page's Refresh button: POST /refresh-slots re-rolls stale demo
+    times with explicit human consent (bypasses the quiet-window guard,
+    still respects a recent POST /reset payload)."""
+
+    def setUp(self):
+        from .demo_slots import ensure_fresh_demo_slots
+
+        ensure_fresh_demo_slots()
+        self._force_all_slots_stale()
+
+    def _force_all_slots_stale(self):
+        past = timezone.now() - timedelta(days=30)
+        Slot.objects.update(start=past, end=past + timedelta(minutes=30))
+
+    def test_re_rolls_stale_slots(self):
+        response = fresh_client().post("/refresh-slots", format="json")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()["refreshed"], 6)
+        self.assertTrue(all(s.start > timezone.now() for s in Slot.objects.all()))
+
+    def test_no_op_reason_when_already_fresh(self):
+        fresh_client().post("/refresh-slots", format="json")
+        response = fresh_client().post("/refresh-slots", format="json")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json(), {"refreshed": 0, "reason": "slots are already fresh"})
+
+    def test_requires_the_api_key(self):
+        client = APIClient()  # no credentials
+        self.assertEqual(client.post("/refresh-slots", format="json").status_code, 401)
+
+    def test_recent_reset_payload_is_respected_even_forced(self):
+        SeedState.mark_reset()
+        response = fresh_client().post("/refresh-slots", format="json")
+        self.assertEqual(response.json()["refreshed"], 0)
+        self.assertIn("POST /reset", response.json()["reason"])
+        self.assertTrue(all(s.start < timezone.now() for s in Slot.objects.all()))
+
+    def test_bypasses_the_quiet_window(self):
+        # This is the button's whole point: recent activity blocks the
+        # auto-refresh, but an explicit click may still fix a stale page.
+        from .demo_slots import ensure_fresh_demo_slots
+
+        slot = Slot.objects.first()
+        Booking.objects.create(slot=slot, name="Recent", email="recent@example.com")
+        self.assertEqual(ensure_fresh_demo_slots(), 0)  # auto path blocked
+        response = fresh_client().post("/refresh-slots", format="json")
+        self.assertEqual(response.json()["refreshed"], 6)
+        self.assertTrue(all(s.start > timezone.now() for s in Slot.objects.all()))

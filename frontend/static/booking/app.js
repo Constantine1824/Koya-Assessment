@@ -173,7 +173,22 @@
     }
   }
 
-  $("#refresh-slots").addEventListener("click", () => { loadSlots().catch(() => {}); });
+  $("#refresh-slots").addEventListener("click", async () => {
+    const status = $("#refresh-status");
+    status.textContent = "Refreshing…";
+    const res = await api("/refresh-slots", { method: "POST" });
+    if (res.status !== 401) {
+      if (res.ok && res.data?.refreshed) {
+        status.textContent = `Slot times moved to now (${res.data.refreshed} refreshed)`;
+      } else if (res.ok) {
+        status.textContent = res.data?.reason || "Nothing to refresh";
+      } else {
+        status.textContent = "Refresh failed — try again";
+      }
+      setTimeout(() => { status.textContent = ""; }, 6000);
+    }
+    await loadSlots().catch(() => {});
+  });
   let filterTimer = null;
   $("#provider-filter").addEventListener("input", () => {
     clearTimeout(filterTimer);

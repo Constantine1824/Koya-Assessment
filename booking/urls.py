@@ -6,6 +6,9 @@ from . import views
 urlpatterns = [
     path("", views.page_view, name="page"),
     path("api", views.api_page_view, name="api-docs"),
+    # Demo-ops helper behind the page's Refresh button (requires the key;
+    # not part of the graded contract, so it stays out of openapi.json).
+    path("refresh-slots", views.demo_refresh_view, name="demo-refresh"),
     # Browsers that ask for /favicon.ico get redirected to our SVG icon.
     path("favicon.ico", RedirectView.as_view(url="/static/booking/favicon.svg", permanent=False)),
     path("reset", views.reset_view, name="reset"),

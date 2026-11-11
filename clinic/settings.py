@@ -103,6 +103,12 @@ RATE_LIMIT_MAX_ATTEMPTS = int(os.environ.get("RATE_LIMIT_MAX_ATTEMPTS", "5"))
 RATE_LIMIT_WINDOW_SECONDS = int(os.environ.get("RATE_LIMIT_WINDOW_SECONDS", "60"))
 RATE_LIMIT_EMAILS_TTL_HOURS = int(os.environ.get("RATE_LIMIT_TTL_HOURS", "24"))
 
+# Rolling demo-slot refresh (booking/demo_slots.py): how long the database
+# must have been quiet before stale demo slots are re-rolled, and how long
+# an explicit POST /reset payload stays untouchable afterwards.
+DEMO_SLOT_QUIET_HOURS = int(os.environ.get("DEMO_SLOT_QUIET_HOURS", "24"))
+DEMO_SLOT_RESET_GRACE_DAYS = int(os.environ.get("DEMO_SLOT_RESET_GRACE_DAYS", "7"))
+
 APPEND_SLASH = False
 
 REST_FRAMEWORK = {

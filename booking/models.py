@@ -1,6 +1,7 @@
 import uuid
 
 from django.db import models
+from django.utils import timezone
 
 
 class Slot(models.Model):
@@ -67,3 +68,27 @@ class BookingAttempt(models.Model):
 
     def __str__(self):
         return f"{self.email} @ {self.at}"
+
+
+class SeedState(models.Model):
+    """Singleton bookkeeping for the rolling demo-slot refresh.
+
+    `last_reset_at` records the most recent POST /reset. The refresh in
+    booking/demo_slots.py refuses to touch slots while that timestamp is
+    recent, because an explicit reset payload is authoritative data —
+    even when it deliberately contains only past slots (the "already
+    started" test case).
+    """
+
+    key = models.CharField(primary_key=True, default="slots", max_length=32)
+    last_reset_at = models.DateTimeField(null=True, blank=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    @classmethod
+    def mark_reset(cls):
+        state, _ = cls.objects.get_or_create(key="slots")
+        state.last_reset_at = timezone.now()
+        state.save(update_fields=["last_reset_at", "updated_at"])
+
+    def __str__(self):
+        return f"reset at {self.last_reset_at}"

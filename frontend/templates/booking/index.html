@@ -24,7 +24,8 @@
       <h2 id="slots-title">Available slots</h2>
       <div class="row">
         <input id="provider-filter" class="input" type="text" placeholder="Filter by provider" aria-label="Filter by provider">
-        <button id="refresh-slots" class="btn ghost" type="button">Refresh</button>
+        <button id="refresh-slots" class="btn ghost" type="button" title="Move stale slot times back to now">Refresh</button>
+        <span id="refresh-status" class="muted" aria-live="polite"></span>
       </div>
     </div>
     <div id="slot-grid" class="slot-grid" aria-busy="true">

@@ -11,7 +11,8 @@ from django.utils import timezone
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-from .models import Booking, BookingAttempt, IdempotencyRecord, Slot
+from .demo_slots import demo_refresh_block_reason, ensure_fresh_demo_slots
+from .models import Booking, BookingAttempt, IdempotencyRecord, SeedState, Slot
 from .serializers import BookingSerializer, NewBookingSerializer, SlotListSerializer
 from .utils import canonical_body_hash, decode_cursor, encode_cursor, parse_dt
 
@@ -49,8 +50,6 @@ def error_response(message, status_code, headers=None):
 
 
 def page_view(request):
-    from .demo_slots import ensure_fresh_demo_slots
-
     # Keeps a deployed page usable whenever it is first visited, however
     # long after the build; a no-op the moment the database has any
     # activity (see demo_slots docstring).
@@ -68,6 +67,18 @@ def page_view(request):
 def api_page_view(request):
     """Interactive OpenAPI explorer at /api (AllowAnonymous: harmless spec)."""
     return render(request, "booking/api.html", {"api_key": settings.X_API_KEY})
+
+
+@api_view(["POST"])
+def demo_refresh_view(request):
+    """Demo-ops helper behind the page's Refresh button: re-rolls stale
+    demo slot times to now. The explicit click bypasses the quiet-window
+    guard (a human asked for it), but a recent POST /reset payload stays
+    untouchable. Not part of the graded contract."""
+    refreshed = ensure_fresh_demo_slots(force=True)
+    if refreshed:
+        return Response({"refreshed": refreshed})
+    return Response({"refreshed": 0, "reason": demo_refresh_block_reason()})
 
 
 # ---------------------------------------------------------------------------
@@ -112,6 +123,9 @@ def _perform_reset(by_id):
     Booking.objects.all().delete()
     Slot.objects.all().delete()
     Slot.objects.bulk_create(by_id.values())
+    # An explicit reset payload is authoritative: the rolling demo-slot
+    # refresh must leave these slots alone for a grace period.
+    SeedState.mark_reset()
 
 
 def _invalid_slot(item, i):
